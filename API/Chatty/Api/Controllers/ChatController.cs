@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Api.Controllers
 {
 	[ApiController]
-	[Route("[controller]")]
+	[Route("[controller]/[action]")]
 	public class ChatController : Controller
 	{
 		private readonly IHubContext<ChatHub, IChatClient> _chatHub;
@@ -21,8 +21,8 @@ namespace Api.Controllers
 			_chatHub = chatHub;
 		}
 		
-		[HttpPost("message")]
-		public async Task Post(ChatMessage message)
+		[HttpPost]
+		public async Task Message(ChatMessage message)
 		{
 			await _chatHub.Clients.All.ReceiveMessage(message);
 		}

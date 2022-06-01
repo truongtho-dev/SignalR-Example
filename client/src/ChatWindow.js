@@ -3,7 +3,11 @@ import Message from "./Message";
 
 const ChatWindow = (props) => {
   const chat = props.chat.map((m) => (
-    <Message key={m.user} user={m.user} message={m.message} />
+    <Message
+      key={Date.now() * Math.random()}
+      user={m.user}
+      message={m.message}
+    />
   ));
   return <div>{chat}</div>;
 };
